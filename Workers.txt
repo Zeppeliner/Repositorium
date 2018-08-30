@@ -1,0 +1,264 @@
+#include <stdio.h>
+
+#include <iostream>
+
+using namespace std;
+
+struct Worker
+
+{
+
+    char name[32];
+
+    char surname[32];
+
+    char otches[32];
+
+    struct adres_type
+
+    {
+
+        int mailindex;
+
+        char country[32];
+
+        char area[32];
+
+        char rayon[32];
+
+        char city[32];
+
+        char streat[32];
+
+        int house;
+
+        int kvartira;
+
+    };
+
+    char national[32];
+
+    struct date_of_born_type
+
+    {
+
+        int day;
+
+        int mouth;
+
+        int year;
+
+    };
+
+    int cehnum;
+
+    int tabelnum;
+
+    char education[32];
+
+    int yearw;
+};
+
+Worker* AddStruct(Worker* Obj, const int amount);
+
+void setData(Worker* Obj, const int amount);
+
+void showData(const Worker* Obj, const int amount);
+
+int main()
+
+{
+
+    Worker* OurWorkers = 0;
+
+    int WorkerAmount = 0;
+
+    int YN = 0;
+
+    do
+    {
+
+        OurWorkers = AddStruct(OurWorkers, WorkerAmount);
+
+        setData(OurWorkers, WorkerAmount);
+
+        WorkerAmount++;
+
+        cout << "Continue?(1-yes, 0-no) ";
+
+        cin >> YN;
+
+    } while (YN!=0);
+
+    showData(OurWorkers, WorkerAmount);
+
+    delete [] OurWorkers;
+
+    return 0;
+
+}
+
+
+Worker* AddStruct(Worker* Obj, const int amount)
+
+{
+
+    if (amount == 0)
+
+    {
+
+        Obj = new Worker[amount+1];
+
+    }
+
+    else
+
+    {
+
+        Worker* tempObj = new Worker[amount+1];
+
+        for (int i=0; i<amount; i++)
+
+        {
+
+            tempObj[i] = Obj[i];
+
+        }
+
+       delete [] Obj;
+
+        Obj = tempObj;
+
+    }
+
+    return Obj;
+
+}
+
+
+void setData(Worker* Obj, const int amount)
+
+{
+    cout << "surname: ";
+
+    cin.getline(Obj[amount].surname, 32);
+
+    cout << "name: ";
+
+    cin.getline(Obj[amount].name, 32);
+
+    cout << "otchestvo: ";
+
+    cin.getline(Obj[amount].otches, 32);
+
+    cout << "mailindex: ";
+
+    cin >> Obj[amount].mailindex;
+
+    cin.get();
+    cout << "country: ";
+
+    cin.getline(Obj[amount].country, 32);
+
+    cout << "area: ";
+
+    cin.getline(Obj[amount].area, 32);
+
+    cout << "rayon: ";
+
+    cin.getline(Obj[amount].rayon, 32);
+
+    cout << "city: ";
+
+    cin.getline(Obj[amount].city, 32);
+
+    cout << "streat: ";
+
+    cin.getline(Obj[amount].streat, 32);
+
+    cout << "house: ";
+
+    cin >> Obj[amount].house;
+
+    cin.get();
+
+    cout << "kvartira: ";
+
+    cin >> Obj[amount].kvartira;
+
+    cin.get();
+
+    cout << "national: ";
+
+    cin.getline(Obj[amount].national, 32);
+
+    cout << "day of born: ";
+
+    cin >> Obj[amount].day;
+
+    cin.get();
+
+    cout << "mouth of born: ";
+
+    cin >> Obj[amount].mouth;
+
+    cin.get();
+
+    cout << "year of born: ";
+
+    cin >> Obj[amount].year;
+
+    cin.get();
+
+    cout << "cehnum: ";
+
+    cin >> Obj[amount].cehnum;
+
+    cin.get();
+
+    cout << "tabelnum: ";
+
+    cin >> Obj[amount].tabelnum;
+
+    cin.get();
+
+    cout << "education: ";
+
+    cin.getline(Obj[amount].education, 32);
+
+    cout << "year when go on work: ";
+
+    cin >> Obj[amount].yearw;
+
+    cin.get();
+
+    cout << endl;
+
+}
+
+
+void showData(const Worker* Obj, const int amount)
+
+{
+
+    system("cls");
+
+    cout << "# " << "surname\t" << "name\t" << "otchestvo\t" << "mailindex\t" << "country\t" << "area\t"
+    << "rayon\t" << "city\t" << "streat\t" << "house\t" << "kvartira\t" << "national\t" << "day of born\t"
+    << "mouth of born\t" << "year of born\t" << "cehnum\t" << "tabelnum\t" << "education\t" 
+    << "year when go on work\t" << endl;
+    cout << endl;
+
+    for (int i = 0; i < amount; i++)
+
+    {
+
+        cout << i+1 << " " << Obj[i].surname << '\t' << Obj[i].name << '\t' << Obj[amount].otches << '\t'
+        << Obj[i].mailindex << '\t' << Obj[i].country << '\t' << Obj[i].area << '\t' << Obj[i].rayon << '\t'
+        << Obj[i].city << '\t' << Obj[i].streat << '\t' << Obj[amount].house << '\t' << Obj[i].kvartira << '\t'
+        << Obj[i].national << '\t' << Obj[i].day << '\t' << Obj[amount].mouth << '\t' << Obj[i].year << '\t'
+        << Obj[i].cehnum << '\t' << Obj[i].tabelnum << '\t' << Obj[i].education << '\t' << Obj[i].yearw << endl;
+
+    }
+
+}
