@@ -1,0 +1,143 @@
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+struct Worker
+{
+    char name[20];
+    char surname[20];
+    char patronymic[20];
+    int mailindex;
+    char country[20];
+    char region[20];
+    char district[20];
+    char city[20];
+    char street[20];
+    int house;
+    int apartment;
+    char nation[20];
+    int day;
+    int month;
+    int year;
+    int workshopnumber;
+    int timetablenum;
+    char education[20];
+    int yearwork;
+};
+
+Worker* AddStruct( Worker* Obj, const int amount );
+void setData( Worker* Obj, const int amount );
+void showData( const Worker* Obj, const int amount );
+
+int main()
+{
+    Worker* Workers = 0;
+    int WorkerAmount = 0;
+    int YorN = 0;
+    do
+    {
+        Workers = AddStruct( Workers, WorkerAmount );
+        setData( Workers, WorkerAmount );
+        WorkerAmount++;
+        cout << "Continue?( 1-yes, 0-no ) ";
+        cin >> YorN;
+    } while ( YorN != 0 );
+    showData( Workers, WorkerAmount );
+    delete [] Workers;
+    return 0;
+}
+
+Worker* AddStruct( Worker* Obj, const int amount )
+{
+    if ( amount == 0 )
+    {
+        Obj = new Worker[amount+1];
+    }
+    else
+    {
+        Worker* tempObj = new Worker[amount+1];
+        for ( int i=0; i<amount; i++ )
+        {
+            tempObj[i] = Obj[i];
+        }
+       delete [] Obj;
+        Obj = tempObj;
+    }
+    return Obj;
+}
+
+void setData( Worker* Obj, const int amount )
+{
+    cout << "surname: ";
+    cin.getline( Obj[amount].surname, 20 );
+    cout << "name: ";
+    cin.getline( Obj[amount].name, 20 );
+    cout << "patronymic: ";
+    cin.getline( Obj[amount].patronymic, 20 );
+    cout << "mailindex: ";
+    cin >> Obj[amount].mailindex;
+    cin.get();
+    cout << "country: ";
+    cin.getline( Obj[amount].country, 20 );
+    cout << "region: ";
+    cin.getline( Obj[amount].region, 20 );
+    cout << "district: ";
+    cin.getline( Obj[amount].district, 20 );
+    cout << "city: ";
+    cin.getline( Obj[amount].city, 20 );
+    cout << "street: ";
+    cin.getline( Obj[amount].street, 20 );
+    cout << "house: ";
+    cin >> Obj[amount].house;
+    cin.get();
+    cout << "apartment: ";
+    cin >> Obj[amount].apartment;
+    cin.get();
+    cout << "nation: ";
+    cin.getline( Obj[amount].nation, 20 );
+    cout << "day of births: ";
+    cin >> Obj[amount].day;
+    cin.get();
+    cout << "month of births: ";
+    cin >> Obj[amount].month;
+    cin.get();
+    cout << "year of births: ";
+    cin >> Obj[amount].year;
+    cin.get();
+    cout << "workshopnumber: ";
+    cin >> Obj[amount].workshopnumber;
+    cin.get();
+    cout << "timetablenum: ";
+    cin >> Obj[amount].timetablenum;
+    cin.get();
+    cout << "education: ";
+    cin.getline( Obj[amount].education, 20 );
+    cout << "year when go to work: ";
+    cin >> Obj[amount].yearwork;
+    cin.get();
+    cout << endl;
+}
+
+void showData( const Worker* Obj, const int amount )
+{
+    cout << "\n# " << "surname\t" << "name\t" << "patronymic\t" << 
+        "mailindex\t" << "country\t" << "region\t" << "district\t" << 
+        "city\t" << "street\t" << "house\t"  << "apartment\t" << "nation\t" << 
+        "day of births\t" << "month of births\t"  << "year of births\t" << 
+        "workshopnumber\t" << "timetablenum\t" << "education\t"  << 
+        "year when go to work\t" << endl;
+    cout << endl;
+    for ( int i = 0; i < amount; i++ )
+    {
+        cout << i+1 << " " << Obj[i].surname << " " << Obj[i].name << " " << 
+            Obj[amount].patronymic << " " << Obj[i].mailindex << " " <<
+            Obj[i].country  << " " << Obj[i].region << " " << Obj[i].district <<
+            " " << Obj[i].city  << " " << Obj[i].street << " " <<
+            Obj[amount].house << " "  << Obj[i].apartment << " " <<
+            Obj[i].nation << " " << Obj[i].day  << " " << Obj[amount].month <<
+            " " << Obj[i].year << " " << Obj[i].workshopnumber << " " <<
+            Obj[i].timetablenum << " " << Obj[i].education  << " " <<
+            Obj[i].yearwork << endl;
+    }
+}
